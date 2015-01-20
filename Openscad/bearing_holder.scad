@@ -7,32 +7,42 @@ $fn = 64;
 
 use <other_parts.scad>;
 
-translate([0,0,17]) bearing_holder();
-//%bearing();
+translate([0,0,13]) bearing_holder();
+%translate([0,0,0]) bearing(hole_radius=5, radius=15,width=9);
 
 
 
 module bearing_holder()
 {
 
-translate([-21,9,0]) belt_clamp();
+//translate([-21,9,0]) belt_clamp();
 
 
 difference()
 {
-intersection()
+//intersection()
+//{
+union()
 {
  xyprofile();
+	translate([0,5,4.5]) rotate([90,0,0]) cylinder(r=4.5,h=2,center=true);
+	translate([0,-5,4.5]) rotate([90,0,0]) cylinder(r=4.5,h=3,center=true);
+	translate([0,5.5,4.5]) rotate([90,0,0]) cylinder(r=6,h=2,center=true);
+	translate([0,-5.5,4.5]) rotate([90,0,0]) cylinder(r=6,h=2,center=true);
 
-translate([0,0,-35]) rotate([90,0,0]) cylinder(r=50,h=100,center=true);
 }
+//translate([0,0,-35]) rotate([90,0,0]) cylinder(r=50,h=100,center=true);
+//}
 
 union()
 {
+	translate([0,0,-5]) cube([30,30,10],center=true);
+	translate([0,0,5+9]) cube([30,30,10],center=true);
+
 	// Holes for screws. 
-	translate([-30,0,1]) cylinder(r=4,h=30);
-	translate([30,0,1]) cylinder(r=4,h=30);	
-	translate([0,0,6]) rotate([90,0,0]) cylinder(r=8.5,h=16,center=true);
+	translate([-20,0,1]) cylinder(r=4,h=30);
+	translate([20,0,1]) cylinder(r=4,h=30);	
+	//translate([0,0,6]) rotate([90,0,0]) cylinder(r=8.5,h=16,center=true);
 }
 
 }
@@ -41,25 +51,25 @@ union()
 
 module xyprofile()
 {
-	linear_extrude(height=50)
+	linear_extrude(height=9)
 	difference()
 	{
 	hull()
 	{
-		translate([30,0,0]) circle(r=6);
-		translate([20,0,0]) circle(r=9);
-		translate([-20,0,0]) circle(r=9);
-		translate([-30,0,0]) circle(r=6);
+		translate([20,0,0]) circle(r=6.5);
+		translate([-20,0,0]) circle(r=6.5);
 	}
 	union()
 	{
-	translate([-30,0,0]) circle(r=2);
-	translate([30,0,0]) circle(r=2);
-	hull()
+	translate([-20,0,0]) circle(r=2);
+	translate([20,0,0]) circle(r=2);
+	square([32,11],center=true);
+
+	/*hull()
 	{
-	translate([-18,0,0]) circle(r=7);
-	translate([18,0,0]) circle(r=7);
-	}
+	translate([-13,0,0]) circle(r=5.5);
+	translate([13,0,0]) circle(r=5.5);
+	}*/
 
 	}
 	}
@@ -67,28 +77,3 @@ module xyprofile()
 }
 }
 
-module belt_clamp()
-{
-    clamp_height = 6;
-    clamp_teeth = 8;
-    
-    for (i = [0:clamp_teeth]) {
-	translate([i*5,0,0]) rotate([0,0,0]) cube([2,1,clamp_height]);
-    }
-
-    //translate([0,-2,0])
-    //cube([(clamp_teeth+1)*5-3,2,clamp_height]);
-
-    translate([0,2.5,0])
-    cube([(clamp_teeth+1)*5-3,1,clamp_height]);
-
-	cube([(clamp_teeth+1)*5-3,3,1]);
-
-/*
-    translate([(clamp_teeth)*2.5/2,4,clamp_height/2])
-    cube([(clamp_teeth+2)*2.5,3,clamp_height],true);
-
-    *translate([(clamp_teeth)*2.5/2,1.5,1])
-    cube([(clamp_teeth+2)*2.5,8,2],true);
-*/
-}

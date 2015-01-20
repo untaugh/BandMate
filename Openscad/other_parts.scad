@@ -5,7 +5,7 @@
 
 include <settings.scad>
 
-bar();
+bearing(hole_radius=5, radius=15,width=9);
 
 /* Two metal rods. */
 module rods(length=300)
