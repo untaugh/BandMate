@@ -19,7 +19,7 @@ translate([0,0,5]) rotate([0,0,0]) carriage();
 //%translate([0,0,0]) bearing(hole_radius=5, radius=15,width=9);
 
 
-translate([0,0,13]) bearing_holder();
+%translate([0,0,13]) bearing_holder();
 
 // Linear bearing test
 %translate([0,20,15]) rotate([0,90,0]) cylinder(h=24.5,r=7.75, center=true);
@@ -112,7 +112,7 @@ module belt_clamp()
     clamp_teeth = 10;
     
     for (i = [0:clamp_teeth]) {
-	translate([i*2.5,0,0]) rotate([0,0,45]) cube([1,1,clamp_height]);
+	translate([i*2.5,0,0]) rotate([0,0,45]) cube([1.5,1.5,clamp_height]);
     }
 
     //translate([0,-2,0])

@@ -49,7 +49,7 @@ module bar()
 
 module bearing(hole_radius=8.5, radius=20,width=12)
 {	
-	translate([0,0,radius+3])
+	//translate([0,0,radius+3])
 	rotate([90,0,0]) 
 	difference()
 	{
