@@ -3,9 +3,22 @@
  * Creative Commons Attribution-ShareAlike 4.0 International License.
  */
 
+$fn = 64;
+
 include <settings.scad>
 
-bearing(hole_radius=5, radius=15,width=9);
+//bearing(hole_radius=5, radius=15,width=9);
+
+solenoid();
+
+/* Solenoid push pull type. */
+module solenoid()
+{
+	translate([0,0,7.5]) cube([30,17,15],center=true);
+	translate([15+17/2,0,15/2]) rotate([0,90,0]) cylinder(r=3,h=17,center=true);
+	translate([-15-13/2,0,15/2]) rotate([0,90,0]) cylinder(r=1.5,h=13,center=true);
+
+}
 
 /* Two metal rods. */
 module rods(length=300)

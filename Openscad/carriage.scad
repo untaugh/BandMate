@@ -29,7 +29,12 @@ translate([0,0,5]) rotate([0,0,0]) carriage();
 module carriage()
 {
 
-translate([-12.5,7.5,7]) belt_clamp();
+/* Belt clamp. */
+translate([-12.5-2.5/2,7.5,7+6]) belt_clamp();
+translate([-15,10.5,13]) cube([10,2,6]);
+translate([5,10.5,13]) cube([10,2,6]);
+translate([-15,7,10]) cube([30,5.5,3]);
+
 
 difference()
 {
@@ -45,7 +50,7 @@ translate([0,-16,6]) cube([30,11,12],center=true);
 
 // Bottom plate.
 translate([0,0,0])
-linear_extrude(height=7)
+linear_extrude(height=10)
 hull()
 {
 translate([14,0,0]) circle(r=11);
@@ -68,13 +73,13 @@ translate([-30,-6,0]) cylinder(r=2.2,h=30);
 // Holes for screw. 
 translate([-20,0,0]) cylinder(r=2.2,h=30);
 translate([20,0,0]) cylinder(r=2.2,h=30);
-translate([-20,0,0]) hexnut(width=7.5, height=6);
-translate([20,0,0]) hexnut(width=7.5, height=6);
+translate([-20,0,0]) hexnut(width=7.5, height=9);
+translate([20,0,0]) hexnut(width=7.5, height=9);
 
 
 // Middle hole. 
 //rotate([0,90,0]) rotate([0,0,45]) cube([12,12,200],center=true);
-rotate([0,90,0]) cylinder(r=4,h=100,center=true);
+rotate([0,90,0]) cylinder(r=6,h=100,center=true);
 
 // Bearing axle hole
 //translate([0,0,18]) rotate([90,0,0]) cylinder(r=10,h=26,center=true);
@@ -109,7 +114,7 @@ module bearing_hollow()
 module belt_clamp()
 {
     clamp_height = 6;
-    clamp_teeth = 10;
+    clamp_teeth = 11;
     
     for (i = [0:clamp_teeth]) {
 	translate([i*2.5,0,0]) rotate([0,0,45]) cube([1.5,1.5,clamp_height]);

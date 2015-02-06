@@ -30,25 +30,25 @@ module pickup()
 		}
 		cylinder(r=m_radius*p_mult,h=20); // Middle hole. 
 	}
+}
 
 
-	/* Bottom plate. */
-	module pickup_bottom()
-	{
-		difference()
-		{
-			linear_extrude(height=1)
-			hull()
-			{
-				translate([-s_dist/2,0,0]) circle(r=s_radius+2);
-				circle(r=b_radius); 
-				translate([s_dist/2,0,0]) circle(r=s_radius+2);
-			}
-			union() // Screw holes. 
-			{
-				translate([-s_dist/2,0,0]) cylinder(r=s_radius,h=10,center=true);
-				translate([s_dist/2,0,0]) cylinder(r=s_radius,h=10,center=true);
-			}
-		}
-	}
+/* Bottom plate. */
+module pickup_bottom()
+{
+  difference()
+  {
+    linear_extrude(height=1)
+    hull()
+    {
+      translate([-s_dist/2,0,0]) circle(r=s_radius+2);
+      circle(r=b_radius); 
+      translate([s_dist/2,0,0]) circle(r=s_radius+2);
+    }
+    union() // Screw holes. 
+    {
+      translate([-s_dist/2,0,0]) cylinder(r=s_radius,h=10,center=true);
+      translate([s_dist/2,0,0]) cylinder(r=s_radius,h=10,center=true);
+    }
+  }
 }
